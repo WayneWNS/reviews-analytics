@@ -23,9 +23,24 @@ print('一共有', len(new), '筆留言長度小於100')
 print(new[0])
 print(new[1])
 
-good = []
+# good = []
+# for d in data:
+# 	if 'good' in d:
+# 		good.append(d) # 括號內的d 的意思是，將留言原封不動的加入good 的隊伍裡。
+# # 也可以改成其他的值，例如: 每找到一筆將一個1 數字加入清單。到時print 出來就會有多少筆，就有多少個1
+# print('一共有', len(good), '比留言提到good')
+# print(good[0])
+
+
+# good = [d for d in data if 'good' in d] # 第一個d 就是上面append(d) 裡面的數值
+# print(good)
+
+# putput = [(number-1) for number in reference if number % 2  == 0]
+# 			   運算			變數        清單           篩選條件
+bad = ['bad' in d for d in data] # "'bad' in d" 會判斷True 或False
+print(bad)
+
+# 以下為原型
+bad = []
 for d in data:
-	if 'good' in d:
-		good.append(d)
-print('一共有', len(good), '比留言提到good')
-print(good[0])
+	bad.append('bad' in d)
