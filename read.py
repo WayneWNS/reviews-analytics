@@ -9,6 +9,7 @@ with open('reviews.txt', 'r') as f:
 			print(len(data)) # 程式運行上，print 是很花時間的
 print('檔案讀取完了，總共有', len(data), '筆資料')
 
+
 sum_len = 0
 for d in data:
 	sum_len += len(d)
@@ -36,11 +37,41 @@ print(new[1])
 # print(good)
 
 # putput = [(number-1) for number in reference if number % 2  == 0]
-# 			   運算			變數        清單           篩選條件
+#			   運算			變數        清單           篩選條件
 bad = ['bad' in d for d in data] # "'bad' in d" 會判斷True 或False
 print(bad)
 
-# 以下為原型
+#  以下為原型
 bad = []
 for d in data:
 	bad.append('bad' in d)
+
+
+# 文字計數
+
+wc = {} # word_count
+for d in data:
+	words = d.split() # 如果使用 ' '切割，當內容有連續多個空白鍵，會被切割成多個空字串，所以印出的東西會有空字串，卻有資料。可以用預設括號內不填，他碰到多個空白鍵會自動跳過。
+	for word in words:
+		if word in wc:
+			wc[word] += 1
+		else:
+			wc[word] = 1 # 新增新的key進wc字典
+
+for word in wc:
+	if wc[word] > 100:
+		print(word, wc[word])
+
+print(len(wc))
+print(wc['wayne'])
+
+while True:
+	word = input('請問你想查什麼字: ')
+	if word == 'q':
+		break
+	if word in wc:
+		print(word, '出現過的次數為: ', wc[word])
+	else:
+		print('這個字不在字典內')
+
+print('感謝使用本查詢功能')
