@@ -1,12 +1,15 @@
+import time
+import progressbar
+
 # github 限制每個檔案上傳最多150MB
 data = []
 count = 0
+bar = progressbar.ProgressBar(max_value=1000000)
 with open('reviews.txt', 'r') as f:
 	for line in f:
 		data.append(line)
 		count += 1
-		if count % 1000 == 0: # 求餘數；當餘數等於0，表示該數值為其倍數
-			print(len(data)) # 程式運行上，print 是很花時間的
+		bar.update(count)
 print('檔案讀取完了，總共有', len(data), '筆資料')
 
 
@@ -50,6 +53,7 @@ for d in data:
 # 文字計數
 
 wc = {} # word_count
+start_time = time.time()
 for d in data:
 	words = d.split() # 如果使用 ' '切割，當內容有連續多個空白鍵，會被切割成多個空字串，所以印出的東西會有空字串，卻有資料。可以用預設括號內不填，他碰到多個空白鍵會自動跳過。
 	for word in words:
@@ -62,6 +66,8 @@ for word in wc:
 	if wc[word] > 100:
 		print(word, wc[word])
 
+end_time = time.time()
+print('總共花費', end_time-start_time, '秒')
 print(len(wc))
 print(wc['wayne'])
 
